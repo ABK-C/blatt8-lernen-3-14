@@ -17,6 +17,11 @@ public:
   double operator()(double x) { return -2 * x * x + 3*x +1; }
 };
 
+class Pol3 {
+public:
+  double operator()(double x) { return x*x*x*x; }
+};
+
 class Gauss {
 public:
   double operator()(double x) { return 1 / (sqrt(M_PI * 2)) * exp(-x * x / 2); }
@@ -110,20 +115,20 @@ template<class Functor> void Tabelle(Functor f) {
 
 int main() {
   // Testfunktion:
-  Pol1 f;
-  std::cout << "f(0) = " << f(0) << '\n';
-  // berechne Trapezformel fuer f
-  std::vector<double> tf = trapez(f,0.,3.,3);
+  Pol1 ff;
+  std::cout << "f(0) = " << ff(0) << '\n';
+  // berechne Trapezformel fuer ff
+  std::vector<double> tff = trapez(ff,0.,3.,3);
   std::cout
       << "###################################\n";
   // Ausgabe:
   std::cout << "Trapez:\n";
-  for (unsigned int i = 0; i < tf.size(); ++i) { // Schleife ueber Werte im Feld
-    std::cout << "I_" << i << " = " << tf[i] << std::endl;
+  for (unsigned int i = 0; i < tff.size(); ++i) { // Schleife ueber Werte im Feld
+    std::cout << "I_" << i << " = " << tff[i] << std::endl;
   }
   
   std::cout << "Romberg:\n";
-  std::vector<std::vector<double> > R = romberg(tf);
+  std::vector<std::vector<double> > R = romberg(tff);
   for(int k = 0, l = R.size() ;  k < l ; ++k) {
     for(int n = 0, m = R[k].size() ;  n < m ; ++n) {
       std::cout << R[k][n] << " ";
@@ -143,11 +148,11 @@ int main() {
     << std::setw(10) << "I0(f)" << " |"
     << std::setw(10) << "I1(f)" << " |"
     << std::setw(10) << "I2(f)" << " |"
-    << std::setw(10) << "I3(f)" << " |"  //Bitte in Firefox öffnen
-    << std::setw(10) << "I1-I0" << " |" 
-    << std::setw(10) << "I2-I1" << " |" 
-    << std::setw(10) << "I3-I2" << " |" 
-    << std::setw(10) << "Int0_3_f" << " |" 
+    << std::setw(10) << "I3(f)" << " |"
+    << std::setw(10) << "I1-I0" << " |"
+    << std::setw(10) << "I2-I1" << " |"
+    << std::setw(10) << "I3-I2" << " |"
+    << std::setw(10) << "Int0_3_f" << " |"
     << "\n---------------||-----------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|";
 
   
