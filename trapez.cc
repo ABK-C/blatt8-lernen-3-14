@@ -110,7 +110,7 @@ template<class Functor> void Tabelle(Functor f) {
 
 int main() {
   // Testfunktion:
-  /*Pol1 f;
+  Pol1 f;
   std::cout << "f(0) = " << f(0) << '\n';
   // berechne Trapezformel fuer f
   std::vector<double> tf = trapez(f,0.,3.,3);
@@ -134,7 +134,7 @@ int main() {
   
   testeAufgabe1();
   testeAufgabe2();
-  */
+  
 
 
   
